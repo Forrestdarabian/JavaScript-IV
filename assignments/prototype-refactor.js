@@ -8,11 +8,11 @@ Prototype Refactor
 
 */
 
-function GameObject(attributes){
-
-    this.createdAt = attributes.createdAt
-    this.name = attributes.name
-    this.dimensions = attributes.dimensions
+class GameObject{
+    constructor(createdAt, name, dimensions){
+    this.createdAt = createdAt;
+    this.name = name;
+    this.dimensions = dimensions;
   }
   
   GameObject.prototype.destroy = function(){
