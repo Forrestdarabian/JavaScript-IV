@@ -9,37 +9,40 @@ Prototype Refactor
 */
 
 class GameObject{
-    constructor(createdAt, name, dimensions){
-    this.createdAt = createdAt;
-    this.name = name;
-    this.dimensions = dimensions;
+    constructor(props){
+    this.createdAt = props.createdAt;
+    this.name = props.name;
+    this.dimensions = props.dimensions;
   }
   
-  GameObject.prototype.destroy = function(){
-  return  `${this.name} was removed from the game.`;
+  destroy() {
+  console.log (`${this.name} was removed from the game.`);
+  };
+}
+  //----------------------------------------------------------------------------------------------------------------------------------------//
+  class CharacterStats extends GameObject{
+    constructor(props){
+      super(props);
+    this.healthPoints = props.healthPoints
+    }
+  
+  takeDamage(object){
+    console.log(`${object.name} took damage.`);
+  };
   };
   //----------------------------------------------------------------------------------------------------------------------------------------//
-  function CharacterStats(attributes){
-    GameObject.call(this, attributes)
-    this.healthPoints = attributes.healthPoints
+  class Humanoid extends GameObject{
+   constructor(props){
+   super(props);
+    this.team = props.team
+    this.weapons = props.weapons
+    this.language = props.language
   }
   
-  CharacterStats.prototype = Object.create(GameObject.prototype)
-  CharacterStats.prototype.takeDamage = function(){
-    return `<object name> took damage.`;
+  greet(){
+    console.log(`${this.name} offers a greeting in ${this.language}`);
   };
-  //----------------------------------------------------------------------------------------------------------------------------------------//
-  function Humanoid(attributes){
-    CharacterStats.call(this, attributes)
-    this.team = attributes.team
-    this.weapons = attributes.weapons
-    this.language = attributes.language
-  }
-  
-  Humanoid.prototype = Object.create(CharacterStats.prototype)
-  Humanoid.prototype.greet = function(){
-    return `${this.name} offers a greeting in ${this.language}`;
-  };
+}
   //----------------------------------------------------------------------------------------------------------------------------------------//
   
   
